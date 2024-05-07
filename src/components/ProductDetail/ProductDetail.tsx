@@ -130,6 +130,33 @@ const ProductDetail = () => {
 
 
 
+    function addHandlerNew() {
+
+
+        const { id, name, category, isNonVeg } = item
+
+        if (item.customizations) {
+
+            let sendCartData: CardDataInter = {
+                id, name, category,
+                isNonVeg: isNonVeg || false,
+                customizations: { sizes: [{ ...item.customizations.sizes[0] }], crusts: [] },
+                quantity: 1,
+                price: item.price
+            }
+
+            console.log(sendCartData)
+
+            dispatch(addItemInCart(sendCartData))
+        }
+
+
+
+    }
+
+
+
+
     function cartItemsNameFormate(name: string) {
 
         return <><span className=" text-xl font-medium font-serif">{name[0]}</span><span>{name.substring(1)}</span></>
@@ -297,7 +324,7 @@ const ProductDetail = () => {
             <div className="flex flex-col justify-center items-center text-center rounded mx-1 my-5 pb-24">
 
                 {/* md is breakpoint for leptop and mobile ----> */}
-                <div className=" border rounded flex justify-between items-center flex-col md:flex-row w-full md:w-4/5">
+                <div className=" mt-20 border rounded flex justify-between items-center flex-col md:flex-row w-full md:w-4/5">
 
                     <ModelViewer item={item} />
 
@@ -356,11 +383,12 @@ const ProductDetail = () => {
                                             <div>
 
                                                 <p
-                                                    className="bg-orange-400 inline-flex px-4 py-1 rounded shadow-md text-white border font-bold  font-serif hover:scale-x-125 hover:scale-y-110 hover:cursor-pointer transition-all"
+                                                    className="bg-orange-400 inline-flex gap-0.5 px-4 py-1 rounded shadow-md text-white border font-bold  font-serif hover:scale-x-125 hover:scale-y-110 hover:cursor-pointer transition-all"
                                                     onClick={() => {
+                                                        addHandlerNew()
 
-                                                        setShowSizingPart(!showSizingPart)
-
+                                                        // Now using now --------->
+                                                        // setShowSizingPart(!showSizingPart)
                                                     }}
                                                 >
                                                     {/* <span className=" text-xs">₹</span>
@@ -368,8 +396,8 @@ const ProductDetail = () => {
 
 
                                                     <span className=" text-xs">₹</span>
-                                                    {totalPriceOfItem || '000'}
-                                                    {/* ADD */}
+                                                    <span>{totalPriceOfItem || '000'} {" "}</span>
+                                                    <span> ADD</span>
                                                 </p>
 
                                             </div>

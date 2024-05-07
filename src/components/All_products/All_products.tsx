@@ -171,7 +171,7 @@ const All_products = () => {
 
                     <p className=" text-xl font-bold mt-auto mb-1">Categories</p>
 
-                    <div className=" flex gap-4 ml-16 md:ml-auto">
+                    <div className=" flex gap-4 ml-auto mr-4">
                         <button
                             className={`text-xs border border-black/30 rounded px-2 ${vegFilterBtn && "text-green-400 border-green-400"} `}
                             onClick={() => { vegFilter() }}
@@ -192,13 +192,15 @@ const All_products = () => {
                 className="relative mt-[5.5rem] bg-white py-10 text-center flex justify-center px-0 lg:px-[25vh]"
             >
 
-                <div className=" bg-white fixed z-5 lg:w-[20vh] lg:left-[25vh] flex items-start gap-10 lg:gap-0 -mt-10 lg:-mt-7  lg:flex-col">
+                <div className=" bg-white fixed z-5 w-full lg:w-[20vh] lg:left-[25vh] flex justify-center lg:justify-start items-start gap-10 lg:gap-0 -mt-10 lg:-mt-7  lg:flex-col">
+
+                    {/* both div is used but at different breakpoints not at same movement */}
 
                     {
                         allCategories.map((cat, i) => {
                             return <p
                                 key={i}
-                                className={`text-lg font-semibold my-5 text-start transition-all duration-500
+                                className={` hidden sm:inline text-lg font-semibold my-5 text-start transition-all duration-500
                                     ${cat === currentCategory && ' pl-2 rounded-s border-b-2 border-orange-500 scale-125 ml-3'}  
                                 `}
                                 ref={(el) => (categoryRefs.current[i] = el)}
@@ -207,7 +209,13 @@ const All_products = () => {
                     }
 
 
+
+                    <div className="inline sm:hidden text-lg font-semibold my-2 transition-all duration-500">
+                        {currentCategory}
+                    </div>
+
                 </div>
+
 
 
                 <div className=" relative left-0 mt-7 lg:mt-0 lg:left-[20vh] w-[95vw] lg:w-[70vw] self-end ">
