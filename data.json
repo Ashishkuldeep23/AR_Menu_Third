@@ -1,0 +1,75 @@
+
+
+{
+
+    "product_info" : [
+        {
+            "name" : "biryani" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "brazil" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "breakfast" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "burger" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "cake" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "cappuccino" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "chicken" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "dal" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "fast-food" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "french" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "momo" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "pizza" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        },
+        {
+            "name" : "sandwich" ,
+            "image" : "URL" ,
+            "description" : "fsdfasdasdsfsaddasbfuhdfkjdgsaufgsdifgastuewqukieifdfgsdfgvsdfhdsifhw"
+        }
+
+    ]
+
+}
+

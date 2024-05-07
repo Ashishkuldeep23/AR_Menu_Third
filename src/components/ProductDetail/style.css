@@ -1,0 +1,70 @@
+.gas_box {
+    height: 47px;
+    width: 42px;
+   
+}
+
+.gas_box .group {
+    height: 47px;
+    width: 42px;
+}
+
+.gas_box .overlap-group {
+    height: 48px;
+    position: relative;
+    top: -1px;
+}
+
+.gas_box .rectangle {
+    border: 2px solid;
+    border-color: #000000;
+    border-radius: 239.5px 239.5px 150px 150px;
+    height: 15px;
+    left: 0;
+    position: absolute;
+    top: 33px;
+    width: 42px;
+}
+
+.gas_box .div {
+    border: 2px solid;
+    border-color: #000000;
+    border-radius: 441px 139px 150px 150px;
+    height: 9px;
+    left: 29px;
+    position: absolute;
+    top: 26px;
+    width: 7px;
+}
+
+.gas_box .rectangle-2 {
+    border: 2px solid;
+    border-color: #000000;
+    border-radius: 441px 139px 150px 150px;
+    height: 9px;
+    left: 5px;
+    position: absolute;
+    top: 26px;
+    transform: rotate(180deg);
+    width: 7px;
+}
+
+.gas_box .rectangle-3 {
+    border: 2px solid;
+    border-color: #000000;
+    border-radius: 158px 266px 266px 266px;
+    height: 9px;
+    left: 17px;
+    position: absolute;
+    top: 36px;
+    transform: rotate(180deg);
+    width: 7px;
+}
+
+.gas_box .vector {
+    height: 29px;
+    left: 10px;
+    position: absolute;
+    top: 0;
+    width: 21px;
+}

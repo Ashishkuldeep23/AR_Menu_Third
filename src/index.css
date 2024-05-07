@@ -1,0 +1,56 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+* {
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+
+* ::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  /* background-color: red; */
+  border-radius: 100px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border: 1px solid cyan;
+  border-radius: 100px;
+  transition: 1s all;
+}
+
+
+
+*::-webkit-scrollbar-thumb:hover {
+  border: 1px solid blue;
+  cursor: pointer;
+}
+
+
+html {
+  height: 100%;
+  /* width: 90%; */
+}
+
+body {
+  min-height: 99dvh;
+  width: 100%;
+}
+
+
+
+/* Below code will hide indicator btn of number input ---------> */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
