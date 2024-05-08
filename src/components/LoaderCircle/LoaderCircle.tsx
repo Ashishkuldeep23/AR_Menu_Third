@@ -1,11 +1,11 @@
 
 // import React from 'react'
 
-export const LoaderCircle = ({ isLoading , isFixied = false }: { isLoading: boolean  , isFixied ?: boolean }) => {
+export const LoaderCircle = ({ isLoading, isFixied = false }: { isLoading: boolean, isFixied?: boolean }) => {
     return (
         <>
 
-            <div className={` ${!isFixied ? "absolute" : "fixed"}  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 z-10`}>
+            <div className={` ${!isFixied ? "absolute" : "fixed"}  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 z-[1]`}>
                 {
                     isLoading
                     &&

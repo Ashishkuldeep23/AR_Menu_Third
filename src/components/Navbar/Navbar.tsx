@@ -46,7 +46,7 @@ export const Navbar = () => {
 
     return (
         <div
-            className=" w-full fixed top-0 z-10  bg-themeColor "
+            className=" w-full fixed top-0 z-10  bg-themeColor border-b "
         >
 
 
@@ -58,7 +58,7 @@ export const Navbar = () => {
                 <CartLeftSection />
 
 
-                <div className="w-full h-16 border-b flex  items-center z-10 relative">
+                <div className="w-full h-16 flex  items-center z-10 relative">
                     {/* Home div */}
                     <div className=" my-auto mr-auto ml-5 hover:scale-110 hover:cursor-pointer transition-all">
                         <Link to='/'>

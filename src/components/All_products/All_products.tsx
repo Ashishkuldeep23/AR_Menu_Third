@@ -59,6 +59,31 @@ const All_products = () => {
 
 
 
+    function categoryClickHandler(e: React.MouseEvent<HTMLParagraphElement, MouseEvent>, i: number) {
+        e.stopPropagation()
+
+        // console.log(categoryRefs)
+        // console.log(productRefs)
+        // console.log(e)
+
+        // e.target.foucs()
+
+
+        // console.log(productRefs.current[i])
+        // productRefs.current[i].focus()
+        // console.log(productRefs.current[i].getBoundingClientRect())
+
+
+        let { top, } = productRefs.current[i].getBoundingClientRect()
+
+
+
+        window.scrollTo(0, +top)
+
+    }
+
+
+
     // // // Cart data arr ---------->
     // console.log(categoryRefs)
 
@@ -79,7 +104,7 @@ const All_products = () => {
 
     // // // set first product ----->
     // console.log(location)
-
+    // // // Not using now ------>
     useEffect(() => {
 
 
@@ -171,9 +196,9 @@ const All_products = () => {
 
                     <p className=" text-xl font-bold mt-auto mb-1">Categories</p>
 
-                    <div className=" flex gap-4 ml-auto mr-4">
+                    <div className=" flex gap-4 ml-auto mr-4 -mt-1.5 sm:mt-0">
                         <button
-                            className={`text-xs border border-black/30 rounded px-2 ${vegFilterBtn && "text-green-400 border-green-400"} `}
+                            className={`text-xs border border-black/30 rounded px-2 ${vegFilterBtn && "border-2 font-semibold text-green-400 border-green-400"} `}
                             onClick={() => { vegFilter() }}
                         >VEG</button>
 
@@ -200,10 +225,11 @@ const All_products = () => {
                         allCategories.map((cat, i) => {
                             return <p
                                 key={i}
-                                className={` hidden sm:inline text-lg font-semibold my-5 text-start transition-all duration-500
+                                className={` hover:cursor-pointer hidden sm:inline text-lg font-semibold my-5 text-start transition-all duration-500
                                     ${cat === currentCategory && ' pl-2 rounded-s border-b-2 border-orange-500 scale-125 ml-3'}  
                                 `}
                                 ref={(el) => (categoryRefs.current[i] = el)}
+                                onClick={(e) => { categoryClickHandler(e, i) }}
                             >{cat}</p>
                         })
                     }
@@ -267,7 +293,7 @@ const All_products = () => {
                                                 key={uuid()}
                                                 className="  relative flex flex-col justify-center items-center border bg-white  rounded mx-1 h-[40vh] w-[40vh]"
                                             >
-                                                <p className=" text-5xl font-bold relative z-20">Getting product data.</p>
+                                                <p className=" text-5xl font-bold relative z-[2]">Getting product data.</p>
                                                 <LoaderCircle isLoading={isLoading} />
                                             </div>
                                         )
