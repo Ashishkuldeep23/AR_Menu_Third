@@ -42,7 +42,7 @@ export const Single_Product = ({ item }: { item: TypeSingleProduct }) => {
                 price: item.price
             }
 
-            console.log(sendCartData)
+            // console.log(sendCartData)
 
             dispatch(addItemInCart(sendCartData))
         }

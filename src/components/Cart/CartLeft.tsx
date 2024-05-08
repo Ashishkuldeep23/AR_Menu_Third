@@ -1,11 +1,24 @@
 
 // import React from 'react'
 
-import { Fragment, } from 'react'
+import { Fragment, useState, } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { CardDataInter, addItemInCart, cartState, removeItemsInCart, toggleOpenCart } from '../../Slices/cartSlice'
 import { useDispatch } from 'react-redux'
+import { gettingTokenInCookieAndLocalHost } from '../../App'
+import toast from 'react-hot-toast'
+import { userState } from '../../Slices/userSlice'
+
+
+
+// // // Here declearing Razorpay is presnt with any after attaching script tag in head of html ------------>
+declare global {
+    interface Window {
+        Razorpay: any;
+    }
+}
+
 
 
 
@@ -16,11 +29,110 @@ function CartLeftSection() {
 
     const { openCart, cartData, totalPrice } = cartState()
 
+    const { userData: { firstName, lastName, email } } = userState()
+
     const dispatch = useDispatch()
 
     const setOpenCart = (newVal?: boolean) => (dispatch(toggleOpenCart(newVal ? newVal : !openCart)))
 
     const themeMode = false
+
+
+    const [isLoading, setIsLoading] = useState(false)
+
+
+    async function checkOutHandler() {
+
+        // console.log(totalPrice)
+
+        if (isLoading) return
+
+        setIsLoading(true)
+
+        try {
+
+
+            let apiKey = null;
+
+            let getKey = await fetch(`${import.meta.env.VITE_BACKEND_URL}/getApiKey`,
+                {
+                    headers: {
+                        'token': gettingTokenInCookieAndLocalHost()
+                    }
+                })
+
+            let keyData = await getKey.json()
+
+            // console.log({ keyData })
+
+            if (!keyData.status) return toast.error(`${keyData.message} | ERROR`)
+
+            if (keyData.status) {
+                apiKey = keyData.key
+            }
+
+
+            // // // Now set data in localHost ------>
+            localStorage.setItem('saveCart', JSON.stringify({ cartData, totalPrice }))
+
+
+
+
+            const checkouRequest = await fetch(`${import.meta.env.VITE_BACKEND_URL}/checkout`,
+                {
+                    body: JSON.stringify({ amount: totalPrice }),
+                    method: "POST",
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "token": `${gettingTokenInCookieAndLocalHost()}`
+                    }
+                })
+
+
+            let checkouData = await checkouRequest.json()
+
+            // console.log(data)
+
+            if (!checkouData.status) return toast.error(`${checkouData.message} | ERROR`)
+
+
+            // // // RazorPay checkOut handler here ------------------>
+
+            const options = {
+                key: apiKey,
+                amount: checkouData.order.amount,
+                currency: "INR",
+                name: "Ar Menu",
+                description: "Test payment for Ar menu Mern App.",
+                image: "https://res.cloudinary.com/dlvq8n2ca/image/upload/v1701708322/jual47jntd2lpkgx8mfx.png",
+                order_id: checkouData.order.id,
+                callback_url: `${import.meta.env.VITE_BACKEND_URL}/verifyPayment`,
+                prefill: {
+                    name: `${firstName} ${lastName}`,
+                    email: `${email}`,
+                    contact: "9000090000"
+                },
+                theme: {
+                    "color": "#474747"
+                },
+            };
+            const rzp1 = new window.Razorpay(options);
+            rzp1.open()
+
+
+        }
+        catch (err) {
+            toast.error(JSON.stringify(err))
+        }
+        finally {
+            setIsLoading(false)
+        }
+
+    }
+
+
+
 
 
     return (
@@ -105,7 +217,7 @@ function CartLeftSection() {
 
                                             <button
                                                 className=' mx-auto mt-5 bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-600 hover:to-orange-400 text-white my-1 py-3 px-7 rounded-full shadow-md font-semibold hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50'
-                                                onClick={() => setOpenCart(false)}
+                                                onClick={() => checkOutHandler()}
                                             >Place Order • ₹{totalPrice}</button>
 
                                         </div>

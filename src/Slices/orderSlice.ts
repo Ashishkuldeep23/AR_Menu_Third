@@ -137,8 +137,6 @@ const orderSlice = createSlice({
                     state.orderData = { tableNumber, orderDate, preparationTime, totalPrice, cartData, userId, status, id }
 
 
-
-
                 }
 
 

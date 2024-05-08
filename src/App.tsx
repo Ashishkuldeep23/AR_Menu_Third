@@ -25,6 +25,7 @@ import sound from "./sound/noti2.mp3";
 import { addNewOrderByNoti } from "./Slices/chefSlice"
 // import { AnyEvent } from "@google/model-viewer/lib/utilities"
 import toast, { Toaster } from "react-hot-toast"
+import { OrderSuccessPage } from "./Screens/OrderSuccessPage"
 
 
 // // fn write to check only based on this ---> calling fetch user ---> in LocalHost also -->
@@ -321,6 +322,11 @@ function App() {
           element={<CurrentOrder />}
         />
 
+
+        <Route
+          path="/orderSuccess"
+          element={<OrderSuccessPage />}
+        />
 
         {/* Not found Page ------> */}
         <Route
