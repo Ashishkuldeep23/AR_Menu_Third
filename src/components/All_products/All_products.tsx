@@ -18,9 +18,6 @@ import { v4 as uuid } from 'uuid'
 const All_products = () => {
 
     // const navgate = useNavigate()
-
-    const isLoading = productState().isLoading
-
     const allProductData = productState().allProroductData
     const unFilteredAllProduct = productState().unFilteredAllProduct
 
@@ -222,16 +219,23 @@ const All_products = () => {
                     {/* both div is used but at different breakpoints not at same movement */}
 
                     {
-                        allCategories.map((cat, i) => {
-                            return <p
-                                key={i}
-                                className={` hover:cursor-pointer hidden sm:inline text-lg font-semibold my-5 text-start transition-all duration-500
+
+                        allCategories.length > 0
+                            ?
+
+                            allCategories.map((cat, i) => {
+                                return <p
+                                    key={i}
+                                    className={` hover:cursor-pointer hidden sm:inline text-lg font-semibold my-5 text-start transition-all duration-500
                                     ${cat === currentCategory && ' pl-2 rounded-s border-b-2 border-orange-500 scale-125 ml-3'}  
                                 `}
-                                ref={(el) => (categoryRefs.current[i] = el)}
-                                onClick={(e) => { categoryClickHandler(e, i) }}
-                            >{cat}</p>
-                        })
+                                    ref={(el) => (categoryRefs.current[i] = el)}
+                                    onClick={(e) => { categoryClickHandler(e, i) }}
+                                >{cat}</p>
+                            })
+
+                            :
+                            <CategoryLoadingSkeleton />
                     }
 
 
@@ -285,21 +289,7 @@ const All_products = () => {
                             })
 
                             :
-                            <div className=" flex flex-wrap justify-center items-center gap-5">
-                                {
-                                    [null, null, null, null, null, null].map(() => {
-                                        return (
-                                            <div
-                                                key={uuid()}
-                                                className="  relative flex flex-col justify-center items-center border bg-white  rounded mx-1 h-[40vh] w-[40vh]"
-                                            >
-                                                <p className=" text-5xl font-bold relative z-[2]">Getting product data.</p>
-                                                <LoaderCircle isLoading={isLoading} />
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </div>
+                            <CartLoadingSkeleton />
                     }
                 </div>
 
@@ -310,4 +300,46 @@ const All_products = () => {
 }
 
 export default All_products
+
+
+
+function CategoryLoadingSkeleton() {
+    return (
+        <div className="w-full py-2 flex  gap-1 flex-wrap  justify-center">
+            {
+                [null, null, null, null].map(() => {
+                    return <p
+                        key={uuid()}
+                        className=" w-20 lg:w-[80%] h-7 rounded-lg border hover:scale-110 hover:shadow-xl transition duration-700 animate-pulse hover:cursor-pointer  "
+                    ></p>
+                })
+            }
+
+        </div>
+    )
+}
+
+
+function CartLoadingSkeleton() {
+
+    const isLoading = productState().isLoading
+
+    return (
+        <div className=" flex flex-wrap justify-center items-center gap-5">
+            {
+                [null, null, null, null, null, null, null, null, null, null].map(() => {
+                    return (
+                        <div
+                            key={uuid()}
+                            className=" relative flex flex-col justify-center items-center border bg-white  rounded mx-1 h-[40vh] w-[40vh] hover:scale-110 hover:shadow-xl hover:cursor-pointer transition-all duration-700 animate-pulse"
+                        >
+                            <p className=" text-2xl font-bold relative z-[2]">Getting product data.</p>
+                            <LoaderCircle isLoading={isLoading} />
+                        </div>
+                    )
+                })
+            }
+        </div>
+    )
+}
 

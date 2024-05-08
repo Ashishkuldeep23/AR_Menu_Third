@@ -56,7 +56,7 @@ export const Single_Product = ({ item }: { item: TypeSingleProduct }) => {
 
 
         <div
-            className="border-b pb-5 "
+            className="group border-b pb-5 hover:scale-110 hover:shadow-xl transition-all duration-150"
         >
 
             <div
@@ -66,14 +66,14 @@ export const Single_Product = ({ item }: { item: TypeSingleProduct }) => {
 
 
                 <div
-                    className="  px-4 mb-2 w-full hover:cursor-pointer"
+                    className=" px-4 mb-2 w-full hover:cursor-pointer group-hover:-mt-1 transition-all duration-150"
                     onClick={() => {
                         navigate(`/product/${item.id}`);
                     }}
                 >
 
 
-                    <p className=" w-full text-start capitalize font-bold flex flex-wrap items-center gap-1.5">
+                    <p className="  w-full text-start capitalize font-bold flex flex-wrap items-center gap-1.5">
 
 
                         <span

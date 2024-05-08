@@ -125,9 +125,6 @@ const orderSlice = createSlice({
 
                     toast.success(`${action.payload.message}`)
 
-                    // // // Remove cart data
-                    localStorage.removeItem("AR_Cart")
-
                     // console.log(action.payload)
 
 
@@ -136,6 +133,13 @@ const orderSlice = createSlice({
 
                     state.orderData = { tableNumber, orderDate, preparationTime, totalPrice, cartData, userId, status, id }
 
+
+
+                    // // // Remove cart data
+                    localStorage.removeItem("AR_Cart")
+
+                    // // // Remove Saved cart data ------>
+                    localStorage.removeItem("saveCart")
 
                 }
 

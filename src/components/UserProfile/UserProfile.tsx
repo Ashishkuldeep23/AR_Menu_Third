@@ -9,13 +9,15 @@ import toast from "react-hot-toast"
 
 
 
+
 // // // This fn() will handle logOut logic ---->
 export const logOutHadler = () => {
 
     document.cookie = 'token=;'
 
-    setTimeout(() => {
+    localStorage.removeItem("userData")
 
+    setTimeout(() => {
         location.reload()
     }, 1000)
 
@@ -30,6 +32,7 @@ const UserProfile = () => {
     // console.log(userData)
 
     // // /// "If user is not login"
+
     if (!userData.firstName && !userData.lastName) {
         return <Navigate to={'/'}></Navigate>
     }
@@ -37,13 +40,18 @@ const UserProfile = () => {
 
     return (
         <>
-            <div className="w-full flex flex-col justify-center items-center bg-slate-800 min-h-screen">
-                <div className=" w-full sm:w-4/6 h-4/6 bg-slate-900 text-white rounded border border-white flex flex-col items-center justify-center relative overflow-x-hidden overflow-y-auto ">
+            <div className="w-full flex flex-col justify-center items-center bg-slate-800/90 min-h-screen pt-28">
+
+                <div className=" w-full sm:w-4/6 h-4/6 bg-slate-900/90 text-white rounded border border-white flex flex-col items-center justify-center relative overflow-x-hidden overflow-y-auto">
 
                     <img
                         src={userData.profilePic}
                         alt="user"
                         className=" border p-0.5 rounded-full"
+                        onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src = "https://res.cloudinary.com/dlvq8n2ca/image/upload/v1700368567/ej31ylpxtamndu3trqtk.png";
+                        }}
                     />
 
                     <div>
@@ -191,7 +199,8 @@ export const SingleOrder = ({ ele, shouldNavigate = false, forChef = false }: { 
                             return (
                                 <div
                                     key={i}
-                                    className=" bg-slate-800 border my-1 px-0.5 rounded relative w-full overflow-hidden xxs:w-4/5"
+                                    className=" bg-slate-800 border my-1 px-0.5 rounded relative w-full overflow-hidden xxs:w-4/5 hover:scale-105 hover:cursor-pointer transition-all"
+                                    onClick={() => navigate(`/product/${e.id}`)}
                                 >
 
                                     <span className=" absolute -top-2 -left-1 border-2 border-yellow-500 px-1 rounded-full ">{i + 1}</span>
@@ -301,21 +310,20 @@ export const SingleOrder = ({ ele, shouldNavigate = false, forChef = false }: { 
             {
                 ele.status === "ON_TABLE"
                 &&
-                <>
-                    <div className=" m-3 mt-0 border-t p-1 flex flex-col items-center">
-                        <Link to={"/"}>
-                            <button
-                                className=" px-3 rounded bg-green-500 border font-bold"
-                                onClick={() => { toast.error("Now we can show the billing page to user and also we can update status of order(status : order done).") }}
-                            >Order Done ✅</button>
-                        </Link>
-                    </div>
-                </>
+
+                <div className=" m-3 mt-0 border-t p-1 flex flex-col items-center">
+                    <Link to={"/"}>
+                        <button
+                            className=" px-3 rounded bg-green-500 border font-bold"
+                            onClick={() => { toast.error("Now we can show the billing page to user and also we can update status of order(status : order done).") }}
+                        >Order Done ✅</button>
+                    </Link>
+                </div>
+
             }
 
 
         </div>
     )
 }
-
 
